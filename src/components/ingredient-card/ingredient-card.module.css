@@ -1,0 +1,14 @@
+.cardButton {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  background-color: transparent;
+  color: #fff;
+  border: 0;
+  cursor: pointer;
+}
+.priceBlock {
+  display: flex;
+  align-items: flex-end;
+}

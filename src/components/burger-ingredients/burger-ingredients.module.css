@@ -1,0 +1,16 @@
+.ingridientScroll {
+  height: 63vh;
+  margin-top: 40px;
+  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.ingridientScroll::-webkit-scrollbar {
+  width: 8px;
+  background-color: #2f2f37;
+}
+
+.ingridientScroll::-webkit-scrollbar-thumb {
+  background-color: #8585ad;
+}

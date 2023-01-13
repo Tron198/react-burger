@@ -1,0 +1,52 @@
+.total {
+  width: 600px;
+  margin-top: 84px;
+}
+
+.ingredientsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  list-style-type: none;
+  padding: 0;
+}
+
+.listElement {
+  display: flex;
+  width: 584px;
+  align-items: center;
+  column-gap: 9px;
+  justify-content: flex-end;
+}
+
+.payment {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 40px 16px 0 0;
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  padding-right: 42px;
+  column-gap: 8px;
+}
+
+.constructorScroll {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 58vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.constructorScroll::-webkit-scrollbar {
+  width: 8px;
+  background-color: #2f2f37;
+}
+
+.constructorScroll::-webkit-scrollbar-thumb {
+  background-color: #8585ad;
+}

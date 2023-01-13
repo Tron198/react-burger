@@ -1,0 +1,45 @@
+.header {
+  display: flex;
+  background-color: #1c1c21;
+  max-width: 1920px;
+  height: 88px;
+  justify-content: center;
+}
+
+.headerNavigation {
+  max-width: 1280px;
+  white-space: nowrap;
+}
+
+.navigationList {
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  list-style: none;
+}
+
+.constructor {
+  display: flex;
+  padding: 16px 20px;
+  margin-right: 8px;
+}
+
+.orders {
+  display: flex;
+  padding: 16px 20px;
+}
+
+.logo {
+  padding: 0 112px;
+}
+
+.account {
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px 20px;
+  margin-left: 8px;
+}
+.accountText {
+  text-decoration: none;
+}

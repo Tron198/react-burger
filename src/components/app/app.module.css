@@ -1,0 +1,10 @@
+.main {
+  display: flex;
+  gap: 42px;
+  justify-content: center;
+}
+
+.twoBlocks {
+  display: flex;
+  flex-direction: column;
+}

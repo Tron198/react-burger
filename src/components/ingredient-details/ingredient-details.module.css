@@ -1,0 +1,15 @@
+.details {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.description {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  list-style-type: none;
+  width: 516px;
+}
