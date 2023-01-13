@@ -3,7 +3,7 @@ import {
     ADD_INGREDIENT,
     DELETE_INGREDIENT,
     MOVE_INGREDIENT,
-    CLEAR_CONSTRUCTOR
+    DELETE_CONSTRUCTOR
   }
     from '../actions/ingredients-constructor';
   
@@ -59,7 +59,7 @@ import {
           constructorList: res
         }
       }
-      case CLEAR_CONSTRUCTOR: {
+      case DELETE_CONSTRUCTOR: {
         return {
           ...state,
           constructorList: []
