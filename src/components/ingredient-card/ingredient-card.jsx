@@ -4,8 +4,9 @@ import { useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { CurrencyIcon, Counter } from "@ya.praktikum/react-developer-burger-ui-components";
 import { setIgredientDetails } from '../../services/actions/ingredient-details';
+import { ingredientType } from '../../utils/components-prop-types.js';
 
-export function IngredientCard({ ingredient }) {
+export  function IngredientCard({ ingredient }) {
 
   const elements = useSelector(state => state.constructorList.constructorList);
   const buns = useSelector(state => state.constructorList.buns);
@@ -39,4 +40,7 @@ export function IngredientCard({ ingredient }) {
       <h3 className="text text_type_main-default pt-2">{ingredient.name}</h3>
     </button>
   )
+}
+IngredientCard.propTypes = {
+  ingredient: ingredientType.isRequired,
 }

@@ -19,15 +19,26 @@
   list-style: none;
 }
 
+.twoBlocks {
+  display: flex;
+}
+
 .constructor {
   display: flex;
   padding: 16px 20px;
   margin-right: 8px;
 }
+.constructorText {
+  text-decoration: none;
+  color: #fff;
+}
 
 .orders {
   display: flex;
   padding: 16px 20px;
+}
+.ordersText {
+  text-decoration: none;
 }
 
 .logo {
