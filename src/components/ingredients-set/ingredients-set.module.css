@@ -1,0 +1,11 @@
+.set {
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 272px);
+  column-gap: 24px;
+  row-gap: 55px;
+  position: relative;
+  justify-content: flex-end;
+  text-align: center;
+  width: 584px;
+}

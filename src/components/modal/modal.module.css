@@ -1,0 +1,22 @@
+.modal {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 720px;
+  min-height: 539px;
+  max-height: 718px;
+  background-color: #1c1c21;
+  border-radius: 40px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.closeButton {
+  position: absolute;
+  top: 57px;
+  right: 37px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}

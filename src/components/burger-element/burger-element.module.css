@@ -1,0 +1,7 @@
+.listElement {
+  display: flex;
+  width: 584px;
+  align-items: center;
+  column-gap: 9px;
+  justify-content: flex-end;
+}
