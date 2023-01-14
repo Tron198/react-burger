@@ -5,7 +5,7 @@ import { createPortal } from 'react-dom';
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { ModalOverlay } from '../modal-overlay/modal-overlay';
 
-function ModalFunction({ children, onClose, title }) {
+export function Modal({ children, onClose, title }) {
 
   useEffect(() => {
     function onKeyDown(event) {
@@ -35,10 +35,8 @@ function ModalFunction({ children, onClose, title }) {
   )
 }
 
-ModalFunction.propTypes = {
+Modal.propTypes = {
   children: PropTypes.node.isRequired,
   title: PropTypes.string,
   onClose: PropTypes.func.isRequired
 }
-
-export const Modal = React.memo(ModalFunction);

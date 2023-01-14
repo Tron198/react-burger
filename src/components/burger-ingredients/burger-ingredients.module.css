@@ -1,3 +1,7 @@
+.sectionTab {
+  display: flex;
+}
+
 .ingridientScroll {
   height: 63vh;
   margin-top: 40px;

@@ -1,7 +1,7 @@
 .modal {
   display: flex;
   flex-direction: column;
-  position: absolute;
+  position: fixed;
   width: 720px;
   min-height: 539px;
   max-height: 718px;
