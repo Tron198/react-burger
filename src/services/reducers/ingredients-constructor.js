@@ -3,16 +3,16 @@ import {
     ADD_INGREDIENT,
     DELETE_INGREDIENT,
     MOVE_INGREDIENT,
-    DELETE_CONSTRUCTOR
+    CLEAR_CONSTRUCTOR
   }
     from '../actions/ingredients-constructor';
   
-  export const ingredientsConstructorState = {
+  export const initialState = {
     constructorList: [],
     buns: []
   }
   
-  export const constructorListReducer = (state = ingredientsConstructorState, action) => {
+  export const constructorListReducer = (state = initialState, action) => {
     switch (action.type) {
       case SET_BUN: {
         return {
@@ -59,10 +59,11 @@ import {
           constructorList: res
         }
       }
-      case DELETE_CONSTRUCTOR: {
+      case CLEAR_CONSTRUCTOR: {
         return {
           ...state,
-          constructorList: []
+          constructorList: [],
+          buns: []
         }
       }
       default: {

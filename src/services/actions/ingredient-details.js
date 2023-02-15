@@ -1,9 +1,9 @@
 export const SET_INGREDIENT_DETAILS = 'SET_INGREDIENT_DETAILS';
 export const DELETE_INGREDIENT_DETAILS = 'DELETE_INGREDIENT_DETAILS';
 
-export const setIgredientDetails = (ingredient) => ({
+export const setIgredientDetails = (payload) => ({
   type: SET_INGREDIENT_DETAILS,
-  ingredient
+  payload
 })
 
 export const deleteIgredientDetails = () => ({

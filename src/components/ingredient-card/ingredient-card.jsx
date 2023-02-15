@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { CurrencyIcon, Counter } from "@ya.praktikum/react-developer-burger-ui-components";
 import { setIgredientDetails } from '../../services/actions/ingredient-details';
-import { ingredientType } from '../../utils/components-prop-types.js';
+import { ingredientType } from '../../utils/prop-types.js';
 
 export  function IngredientCard({ ingredient }) {
 

@@ -7,50 +7,27 @@
 }
 
 .headerNavigation {
-  max-width: 1280px;
+  max-width: 1240px;
   white-space: nowrap;
-}
-
-.navigationList {
-  padding: 0;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 343px 290px 343px;
+  gap: 132px;
   align-items: center;
-  list-style: none;
 }
 
 .twoBlocks {
   display: flex;
+  gap: 49px;
 }
 
-.constructor {
+.link {
   display: flex;
-  padding: 16px 20px;
-  margin-right: 8px;
-}
-.constructorText {
-  text-decoration: none;
-  color: #fff;
-}
-
-.orders {
-  display: flex;
-  padding: 16px 20px;
-}
-.ordersText {
+  align-items: center;
+  gap: 8px;
+  justify-content:flex-end;
   text-decoration: none;
 }
 
-.logo {
-  padding: 0 112px;
-}
-
-.account {
-  display: flex;
-  justify-content: flex-end;
-  padding: 16px 20px;
-  margin-left: 8px;
-}
-.accountText {
-  text-decoration: none;
+.active {
+  color: #f2f2f3;
 }

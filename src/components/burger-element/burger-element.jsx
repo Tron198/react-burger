@@ -5,7 +5,7 @@ import { useDrag, useDrop } from "react-dnd";
 import { DragIcon, ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDispatch } from "react-redux";
 import { moveIngredient } from "../../services/actions/ingredients-constructor";
-import { ingredientType } from '../../utils/components-prop-types';
+import { ingredientType } from '../../utils/prop-types';
 
 export function BurgerElement({ element, deleteElement, id, index }) {
 

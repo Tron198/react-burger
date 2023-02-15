@@ -3,3 +3,6 @@
   align-items: center;
   flex-direction: column;
 }
+.orderTitle {
+  text-shadow: 0 0 30px #4c4cff;
+}
