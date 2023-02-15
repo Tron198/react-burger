@@ -23,7 +23,6 @@ function AppHeaderFunction() {
               Конструктор
             </p>
           </NavLink>
-
           <a
             href='#'
             className={styles.link}>
@@ -36,21 +35,19 @@ function AppHeaderFunction() {
             </p>
           </a>
         </div>
-
         <Logo />
-
-          <NavLink
-            to='/profile'
-            exact={true}
-            className={styles.link}>
-            <ProfileIcon type={pathname === '/profile' ? "primary" : "secondary"} />
-            <p className={pathname === '/profile'
-              ? `${styles.active} text text_type_main-default`
-              : `text text_type_main-default text_color_inactive`}
-            >
-              Личный кабинет
-            </p>
-          </NavLink>
+        <NavLink
+          to='/profile'
+          exact={true}
+          className={styles.link}>
+          <ProfileIcon type={pathname === '/profile' ? "primary" : "secondary"} />
+          <p className={pathname === '/profile'
+            ? `${styles.active} text text_type_main-default`
+            : `text text_type_main-default text_color_inactive`}
+          >
+            Личный кабинет
+          </p>
+        </NavLink>
       </nav>
     </header>
   )
