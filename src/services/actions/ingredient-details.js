@@ -3,7 +3,7 @@ export const DELETE_INGREDIENT_DETAILS = "DELETE_INGREDIENT_DETAILS";
 
 export const setIgredientDetails = (ingredient) => ({
   type: SET_INGREDIENT_DETAILS,
-  payload: ingredient
+  payload: ingredient,
 });
 
 export const deleteIgredientDetails = () => ({

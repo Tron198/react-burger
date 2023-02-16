@@ -1,10 +1,10 @@
-import React, { useEffect, useCallback  } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppHeader } from '../app-header/app-header';
 import { getIngredientsList } from '../../services/actions/ingredients-list';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
-import { Switch, Route, useLocation } from 'react-router-dom';
+import { Switch, Route, useLocation, useHistory, useParams } from 'react-router-dom';
 import { ProtectedRoute } from '../protected-route';
 import { deleteIgredientDetails } from '../../services/actions/ingredient-details';
 import { Modal } from '../modal/modal';
@@ -17,22 +17,28 @@ import {
 
 export function App() {
 
-
+  const history = useHistory()
   const dispatch = useDispatch();
   const location = useLocation();
   const background = location.state && location.state.background;
-
+  const { id } = useParams()
+  const { ingredientsList } = useSelector(state => state.ingredientsList)
+  const ingredient = ingredientsList.find(i => i._id === id)
+  console.log(ingredient)
 
   useEffect(() => {
     dispatch(getIngredientsList())
   }, [dispatch])
-  
-  const openIngredientsModal = useSelector(state => !!state.ingredientDetails.ingredientDetails);
-  const closeIngredientsModal = useCallback(() => {
-    dispatch(deleteIgredientDetails())
-    window.history.pushState(null, '', '/')
-  }, [dispatch])
 
+  const openIngredientDetailsModal = useSelector(state => !!state.ingredientDetails.ingredientDetails);
+
+  const closeIngredientsModal = () => {
+    dispatch(deleteIgredientDetails())
+    history.push({
+      ...location.state.background,
+      state: { background: null },
+    });
+  }
 
   return (
     <DndProvider backend={HTML5Backend}>
@@ -50,20 +56,15 @@ export function App() {
           <IngredientInfo />
         </Route>
 
-       
         <Route component={PageNotFound} />
       </Switch>
       {background && (
-        <>
         <Route path="/ingredients/:id">
-        {openIngredientsModal  && (
-              <Modal onClose={closeIngredientsModal}>
-                <IngredientDetails />
-              </Modal>
-            )}
-          </Route>
-        </>
+          <Modal onClose={closeIngredientsModal}>
+            <IngredientDetails />
+          </Modal>
+        </Route>
       )}
     </DndProvider>
-  )}
-
+  )
+}
