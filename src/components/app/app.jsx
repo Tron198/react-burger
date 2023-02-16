@@ -12,21 +12,22 @@ import { IngredientDetails } from '../ingredient-details/ingredient-details';
 import {
   Main, Registration, LoginPage,
   ForgotPassword, ResetPassword, ProfilePage,
-  IngredientPage, PageNotFound
+  IngredientInfo, PageNotFound
 } from '../../pages/index';
 
 export function App() {
 
+
   const dispatch = useDispatch();
   const location = useLocation();
   const background = location.state && location.state.background;
+
 
   useEffect(() => {
     dispatch(getIngredientsList())
   }, [dispatch])
   
   const openIngredientsModal = useSelector(state => !!state.ingredientDetails.ingredientDetails);
-  
   const closeIngredientsModal = useCallback(() => {
     dispatch(deleteIgredientDetails())
     window.history.pushState(null, '', '/')
@@ -36,7 +37,7 @@ export function App() {
   return (
     <DndProvider backend={HTML5Backend}>
       <AppHeader />
-      <Switch>
+      <Switch location={background || location}>
         <Route path="/" exact={true} component={Main} />
         <Route path="/login" exact={true} component={LoginPage} />
         <Route path="/register" exact={true} component={Registration} />
@@ -44,13 +45,18 @@ export function App() {
         <Route path="/reset-password" exact={true} component={ResetPassword} />
         <ProtectedRoute path="/profile" exact={true} component={ProfilePage} />
         <ProtectedRoute path="/profile/orders" exact={true} component={ProfilePage} />
-        <Route path="/ingredients/:id" exact={true} component={IngredientPage} /> 
+
+        <Route path="/ingredients/:id" >
+          <IngredientInfo />
+        </Route>
+
+       
         <Route component={PageNotFound} />
       </Switch>
       {background && (
         <>
-          <Route path="/ingredients/:id" >
-            {openIngredientsModal && (
+        <Route path="/ingredients/:id">
+        {openIngredientsModal  && (
               <Modal onClose={closeIngredientsModal}>
                 <IngredientDetails />
               </Modal>
@@ -59,5 +65,5 @@ export function App() {
         </>
       )}
     </DndProvider>
-  )
-}
+  )}
+

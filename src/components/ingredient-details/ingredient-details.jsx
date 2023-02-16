@@ -3,7 +3,8 @@ import { useSelector } from 'react-redux';
 
 export function IngredientDetails() {
 
-  const ingredient = useSelector(state => state.ingredientDetails.ingredientDetails)
+  const ingredient = useSelector(state => state.ingredientDetails.ingredientDetails)|| JSON.parse(sessionStorage.getItem('ingredient'))
+  console.log (sessionStorage.getItem('ingredient'))
   
   if (!ingredient) {
     return null
