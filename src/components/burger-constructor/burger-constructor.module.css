@@ -18,21 +18,6 @@
   column-gap: 9px;
   justify-content: flex-end;
 }
-
-.payment {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  margin: 40px 16px 0 0;
-}
-
-.price {
-  display: flex;
-  align-items: center;
-  padding-right: 42px;
-  column-gap: 8px;
-}
-
 .constructorScroll {
   display: flex;
   flex-direction: column;

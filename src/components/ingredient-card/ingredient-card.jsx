@@ -4,10 +4,12 @@ import { useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { CurrencyIcon, Counter } from "@ya.praktikum/react-developer-burger-ui-components";
 import { setIgredientDetails } from '../../services/actions/ingredient-details';
-import { ingredientType } from '../../utils/components-prop-types.js';
+import { ingredientType } from '../../utils/prop-types.js';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 
-export  function IngredientCard({ ingredient }) {
-
+export function IngredientCard({ ingredient }) {
+  const history = useHistory()
+  const location = useLocation();
   const elements = useSelector(state => state.constructorList.constructorList);
   const buns = useSelector(state => state.constructorList.buns);
 
@@ -18,6 +20,12 @@ export  function IngredientCard({ ingredient }) {
   const dispatch = useDispatch();
   const handleIngredientClick = () => {
     dispatch(setIgredientDetails(ingredient))
+    history.push({
+      pathname: `/ingredients/${ingredient._id}`,
+      state: {
+        background: location,
+      }
+    }, [])
   }
 
   const [, dragIngredient] = useDrag(() => ({
@@ -30,15 +38,24 @@ export  function IngredientCard({ ingredient }) {
   }), [])
 
   return (
-    <button className={styles.cardButton} onClick={handleIngredientClick} ref={dragIngredient}>
-      <img src={ingredient.image} alt={ingredient.name} />
-      {count > 0 ? <Counter id={ingredient._id} count={count} size="small" /> : null}
-      <div className={styles.priceBlock}>
-        <p className="text text_type_digits-default pt-2 pr-2">{ingredient.price}</p>
-        <CurrencyIcon type="primary" />
-      </div>
-      <h3 className="text text_type_main-default pt-2">{ingredient.name}</h3>
-    </button>
+
+    <article className={styles.item} onClick={handleIngredientClick} ref={dragIngredient}>
+
+      <Link to={{
+        pathname: `/ingredients/${ingredient._id}`,
+        state: { background: location },
+      }}
+        className={`${styles.link} text text_type_main-default`}>
+        {count > 0 ? <Counter count={count} size="small" /> : null}
+
+        <img className="ml-4 mr-4" src={ingredient.image} alt={ingredient.name} />
+        <div className={`${styles.price} mt-2 mb-2`}>
+          <p className="text text_type_digits-default">{ingredient.price}</p>
+          <CurrencyIcon type="primary" />
+        </div>
+        <p className={`${styles.subtitle} text text_type_main-default`}>{ingredient.name}</p>
+      </Link>
+    </article>
   )
 }
 IngredientCard.propTypes = {

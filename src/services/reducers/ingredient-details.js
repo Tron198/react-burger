@@ -1,25 +1,28 @@
-import { SET_INGREDIENT_DETAILS, DELETE_INGREDIENT_DETAILS } from '../actions/ingredient-details';
+import {
+  SET_INGREDIENT_DETAILS,
+  DELETE_INGREDIENT_DETAILS,
+} from "../actions/ingredient-details";
 
-export const ingredientDetailsState = {
-  ingredientDetails: null
-}
+export const initialState = {
+  ingredientDetails: null,
+};
 
-export const ingredientDetailsReducer = (state = ingredientDetailsState, action) => {
+export const ingredientDetailsReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_INGREDIENT_DETAILS: {
       return {
         ...state,
-        ingredientDetails: action.ingredient
-      }
+        ingredientDetails: action.payload,
+      };
     }
     case DELETE_INGREDIENT_DETAILS: {
       return {
         ...state,
-        ingredientDetails: null
-      }
+        ingredientDetails: null,
+      };
     }
     default: {
       return state;
     }
   }
-}
+};
