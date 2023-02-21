@@ -1,6 +1,7 @@
 import styles from "./ingredient-details.module.css";
-import { useSelector } from "react-redux";
+//import { useSelector } from "react-redux";
 import { useParams } from "react-router";
+import { useSelector } from "../../services/hooks/hooks";
 
 export const IngredientDetails = () => {
   type QuizParams = {
@@ -8,7 +9,7 @@ export const IngredientDetails = () => {
   };
   const { id } = useParams<QuizParams>();
   const { ingredientsList } = useSelector(
-    (state: any) => state.ingredientsList
+    (state) => state.ingredientsList
   );
   const ingredient = ingredientsList.find((i: { _id: string }) => i._id === id);
   if (!ingredient) {

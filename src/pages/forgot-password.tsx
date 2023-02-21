@@ -10,7 +10,7 @@ export const ForgotPassword = () => {
 
     const dispatch = useDispatch();
     const forgot = useSelector(state => state.passwordForgot.success);
-    const {values, setValues} = useForm({ email: '' });
+    const {values, handleChange} = useForm({ email: '' });
 
     const emailData: FormEventHandler = (event)  => {
         event.preventDefault();
@@ -25,7 +25,7 @@ export const ForgotPassword = () => {
         <form className={styles.form} onSubmit={(event) => emailData(event)}>
             <h1 className="text text_type_main-medium mb-6">Восстановление пароля</h1>
             <Input
-                onChange={(evt) => setValues({ ...values, email: evt.target.value })}
+                onChange={handleChange}
                 value={values.email}
                 name={'email'}
                 placeholder={'Укажите e-mail'}

@@ -1,16 +1,16 @@
-import styles from './orders-history.module.css';
+import styles from './orders-history-user.module.css';
 import { OrderCard } from '../order-card/order-card';
 import { useSelector } from '../../services/hooks/hooks';
 
-export const OrdersHistory = () => {
+export const OrdersHistoryUser = () => {
 
-  const orders = useSelector(state => state.webSocket.orders);
+  const orders = useSelector(state => state.webSocketUser.orders);
 
   return (
     <>
       <ul className={styles.scroll}>
         {orders.map(order =>
-          <li className={styles.block} key={order._id}>
+          <li key={order._id}>
             <OrderCard order={order} />
           </li>
         )}
