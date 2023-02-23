@@ -65,7 +65,7 @@ export const BurgerElement: FC<TBurgerElement> = ({
   drag(drop(ref));
 
   return (
-    <div className={styles.listElement} key={element.id} ref={ref}>
+    <div className={styles.element} key={element.id} ref={ref}>
       <DragIcon type="primary" />
       <ConstructorElement
         handleClose={() => deleteElement(element)}

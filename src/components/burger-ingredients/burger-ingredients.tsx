@@ -1,8 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import styles from "./burger-ingredients.module.css";
 import { IngredientsSet } from "../ingredients-set/ingredients-set";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useCallback } from "react";
 
 const BurgerIngredientsFunction = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -29,7 +28,7 @@ const BurgerIngredientsFunction = () => {
 
     const options = {
       root: containerRef.current,
-      rootMargin: "0px 0px -70% 0px",
+      rootMargin: "0px 0px -67% 0px",
     };
 
     const callback = (
@@ -61,7 +60,7 @@ const BurgerIngredientsFunction = () => {
   return (
     <section>
       <h3 className="text text_type_main-large mt-10 mb-5">Соберите бургер</h3>
-      <div className={styles.sectionTab}>
+      <div className={styles.tabulation}>
         <Tab
           value="bun"
           active={current === "bun"}
@@ -84,7 +83,7 @@ const BurgerIngredientsFunction = () => {
           Начинки
         </Tab>
       </div>
-      <div className={styles.largeScroll} ref={containerRef}>
+      <div className={styles.scroll} ref={containerRef}>
         <IngredientsSet type="bun" title="Булки" refElement={bunRef} />
         <IngredientsSet type="sauce" title="Соусы" refElement={sauceRef} />
         <IngredientsSet type="main" title="Начинки" refElement={mainRef} />

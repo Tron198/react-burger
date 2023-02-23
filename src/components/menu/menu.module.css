@@ -1,17 +1,17 @@
 .profileMenu {
-    display: flex;
-    align-items: center;
-    height: 64px;
-    text-decoration: none;
+  display: flex;
+  align-items: center;
+  height: 64px;
+  text-decoration: none;
 }
 
 .active {
-    color: #F2F2F3;
+  color: #f2f2f3;
 }
 
 .exitButton {
-    background-color: transparent;
-    border: 0;
-    height: 64px;
-    cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  height: 64px;
+  cursor: pointer;
 }

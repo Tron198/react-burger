@@ -8,12 +8,12 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { NavLink, useLocation } from "react-router-dom";
 
-function AppHeaderFunction() {
+const AppHeaderFunction = () => {
   const { pathname } = useLocation();
 
   return (
     <header className={styles.header}>
-      <nav className={styles.headerNavigation}>
+      <nav className={styles.navigation}>
         <div className={styles.twoBlocks}>
           <NavLink to="/" exact={true} className={styles.link}>
             <BurgerIcon type={pathname === "/" ? "primary" : "secondary"} />
@@ -27,20 +27,23 @@ function AppHeaderFunction() {
               Конструктор
             </p>
           </NavLink>
-          <a href="#" className={styles.link}>
-            <ListIcon type={pathname === "#" ? "primary" : "secondary"} />
+
+          <NavLink to="/feed" exact={true} className={styles.link}>
+            <ListIcon type={pathname === "/feed" ? "primary" : "secondary"} />
             <p
               className={
-                pathname === "#"
+                pathname === "/feed"
                   ? `${styles.active} text text_type_main-default`
                   : `text text_type_main-default text_color_inactive`
               }
             >
               Лента заказов
             </p>
-          </a>
+          </NavLink>
         </div>
+
         <Logo />
+
         <NavLink to="/profile" exact={true} className={styles.link}>
           <ProfileIcon
             type={pathname === "/profile" ? "primary" : "secondary"}
@@ -58,6 +61,6 @@ function AppHeaderFunction() {
       </nav>
     </header>
   );
-}
+};
 
 export const AppHeader = React.memo(AppHeaderFunction);

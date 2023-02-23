@@ -1,82 +1,56 @@
 import styles from "./ingredient-details.module.css";
-//import { useSelector } from "react-redux";
-import { useParams } from "react-router";
 import { useSelector } from "../../services/hooks/hooks";
+import { useParams } from "react-router-dom";
 
 export const IngredientDetails = () => {
-  type QuizParams = {
-    id: string;
-  };
-  const { id } = useParams<QuizParams>();
-  const { ingredientsList } = useSelector(
-    (state) => state.ingredientsList
+  const ingredients = useSelector(
+    (state) => state.ingredientsList.ingredientsList
   );
-  const ingredient = ingredientsList.find((i: { _id: string }) => i._id === id);
+  const params = useParams<{ id?: string }>();
+  const ingredient = ingredients.find((item) => item._id === params.id);
+
   if (!ingredient) {
     return null;
   }
 
   return (
-    <>
-      <h2 className={`${styles.title} text text_type_main-large mt-10 ml-10`}>
-        Детали ингредиента
-      </h2>
-      <div className={`${styles.ingredient_details} pl-25 pr-25`}>
-        <img
-          className="ml-5 mr-5"
-          src={ingredient.image_large}
-          alt={ingredient.name}
-        />
-        <p className={`${styles.subtitle} text text_type_main-medium mt-4`}>
-          {ingredient.name}
-        </p>
-
-        <ul className={`${styles.nutrients} mt-8 mb-15`}>
-          <li className={styles.nutrient}>
-            <p
-              className={`${styles.text} text text_type_main-default text_color_inactive`}
-            >
-              Калории,ккал
-            </p>
-            <p className="text text_type_digits-default text_color_inactive">
-              {ingredient.calories}
-            </p>
-          </li>
-
-          <li className={styles.nutrient}>
-            <p
-              className={`${styles.text} text text_type_main-default text_color_inactive`}
-            >
-              Белки, г
-            </p>
-            <p className="text text_type_digits-default text_color_inactive">
-              {ingredient.proteins}
-            </p>
-          </li>
-
-          <li className={styles.nutrient}>
-            <p
-              className={`${styles.text} text text_type_main-default text_color_inactive`}
-            >
-              Жиры, г
-            </p>
-            <p className="text text_type_digits-default text_color_inactive">
-              {ingredient.fat}
-            </p>
-          </li>
-
-          <li className={styles.nutrient}>
-            <p
-              className={`${styles.text} text text_type_main-default text_color_inactive`}
-            >
-              Углеводы, г
-            </p>
-            <p className="text text_type_digits-default text_color_inactive">
-              {ingredient.carbohydrates}
-            </p>
-          </li>
-        </ul>
-      </div>
-    </>
+    <div className={styles.details}>
+      <img src={ingredient.image_large} alt={ingredient.name} />
+      <h3 className="text text_type_main-medium mt-4">{ingredient.name}</h3>
+      <ul className={styles.description}>
+        <li>
+          <p className="text text_type_main-default text_color_inactive mt-8 mb-2">
+            Калории,ккал
+          </p>
+          <p className="text text_type_main-default text_color_inactive mb-15">
+            {ingredient.calories}
+          </p>
+        </li>
+        <li>
+          <p className="text text_type_main-default text_color_inactive mt-8 mb-2">
+            Белки, г
+          </p>
+          <p className="text text_type_main-default text_color_inactive mb-15">
+            {ingredient.proteins}
+          </p>
+        </li>
+        <li>
+          <p className="text text_type_main-default text_color_inactive mt-8 mb-2">
+            Жиры, г
+          </p>
+          <p className="text text_type_main-default text_color_inactive mb-15">
+            {ingredient.fat}
+          </p>
+        </li>
+        <li>
+          <p className="text text_type_main-default text_color_inactive mt-8 mb-2">
+            Углеводы, г
+          </p>
+          <p className="text text_type_main-default text_color_inactive mb-15">
+            {ingredient.carbohydrates}
+          </p>
+        </li>
+      </ul>
+    </div>
   );
 };

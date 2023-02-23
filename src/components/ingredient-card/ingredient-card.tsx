@@ -1,19 +1,19 @@
+import React, { FC, MouseEvent, useMemo } from "react";
 import styles from "./ingredient-card.module.css";
 import { useDrag } from "react-dnd";
-import { FC, useMemo } from "react";
+import { useSelector, useDispatch } from "../../services/hooks/hooks";
 import {
   CurrencyIcon,
   Counter,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { setIgredientDetails } from "../../services/actions/ingredient-details";
-
-import { Link, useLocation, useHistory } from "react-router-dom";
-import { TLocation } from "../../services/types/types";
 import { TIngredientCard } from "../../services/types/types";
-import { useDispatch, useSelector } from "../../services/hooks/hooks";
+import { Link, useLocation } from "react-router-dom";
+
 export const IngredientCard: FC<TIngredientCard> = ({ ingredient }) => {
-  const history = useHistory();
-  const location = useLocation<TLocation>();
+  const dispatch = useDispatch();
+  const location = useLocation();
+
   const elements = useSelector(
     (state) => state.constructorList.constructorList
   );
@@ -21,27 +21,10 @@ export const IngredientCard: FC<TIngredientCard> = ({ ingredient }) => {
 
   const count = useMemo(
     () =>
-      elements.filter(
-        (element: { _id: string }) => element._id === ingredient._id
-      ).length ||
-      buns.filter((element: { _id: string }) => element._id === ingredient._id)
-        .length * 2,
+      elements.filter((element) => element._id === ingredient._id).length ||
+      buns.filter((element) => element._id === ingredient._id).length * 2,
     [buns, elements, ingredient._id]
   );
-
-  const dispatch = useDispatch();
-  const handleIngredientClick = () => {
-    dispatch(setIgredientDetails(ingredient));
-    history.push(
-      {
-        pathname: `/ingredients/${ingredient._id}`,
-        state: {
-          background: location,
-        },
-      },
-      []
-    );
-  };
 
   const [, dragIngredient] = useDrag(
     () => ({
@@ -55,34 +38,35 @@ export const IngredientCard: FC<TIngredientCard> = ({ ingredient }) => {
     []
   );
 
-  return (
-    <article
-      className={styles.item}
-      onClick={handleIngredientClick}
-      ref={dragIngredient}
-    >
-      <Link
-        to={{
-          pathname: `/ingredients/${ingredient._id}`,
-          state: { background: location },
-        }}
-        className={`${styles.link} text text_type_main-default`}
-      >
-        {count > 0 ? <Counter count={count} size="small" /> : null}
+  const handleIngredientClick = (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    dispatch(setIgredientDetails(ingredient));
+  };
 
-        <img
-          className="ml-4 mr-4"
-          src={ingredient.image}
-          alt={ingredient.name}
-        />
-        <div className={`${styles.price} mt-2 mb-2`}>
-          <p className="text text_type_digits-default">{ingredient.price}</p>
+  return (
+    <>
+      <button
+        className={styles.cardButton}
+        onClick={handleIngredientClick}
+        ref={dragIngredient}
+      >
+        <Link
+          to={{
+            pathname: `/ingredients/${ingredient._id}`,
+            state: { background: location },
+          }}
+        >
+          <img src={ingredient.image} alt={ingredient.name} />
+        </Link>
+        {count > 0 ? <Counter count={count} size="small" /> : null}
+        <div className={styles.price}>
+          <p className="text text_type_digits-default pt-2 pr-2">
+            {ingredient.price}
+          </p>
           <CurrencyIcon type="primary" />
         </div>
-        <p className={`${styles.subtitle} text text_type_main-default`}>
-          {ingredient.name}
-        </p>
-      </Link>
-    </article>
+        <h3 className="text text_type_main-default pt-2">{ingredient.name}</h3>
+      </button>
+    </>
   );
 };
