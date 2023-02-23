@@ -1,19 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
+import { useDispatch } from "../../services/hooks/hooks";
 import { AppHeader } from "../app-header/app-header";
 import { getIngredientsList } from "../../services/actions/ingredients-list";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
-import {
-  Switch,
-  Route,
-  useLocation,
-  useHistory,
-  useParams,
-} from "react-router-dom";
+import { Switch, Route, useLocation, useHistory } from "react-router-dom";
 import { ProtectedRoute } from "../protected-route";
-import { deleteIgredientDetails } from "../../services/actions/ingredient-details";
-import { Modal } from "../modal/modal";
-import { IngredientDetails } from "../ingredient-details/ingredient-details";
 import {
   Main,
   Registration,
@@ -21,63 +13,91 @@ import {
   ForgotPassword,
   ResetPassword,
   ProfilePage,
-  IngredientInfo,
+  FeedPage,
+  IngredientPage,
   PageNotFound,
+  FeedId,
+  OrderId,
 } from "../../pages/index";
 import { TLocation } from "../../services/types/types";
-import { useDispatch, useSelector } from "../../services/hooks/hooks";
+import { Modal } from "../../components/modal/modal";
+import { IngredientDetails } from "../../components/ingredient-details/ingredient-details";
+import { OrderInfo } from "../order-info/order-info";
+import { OrderInfoUser } from "../order-info-user/order-info-user";
 
 export const App = () => {
-  const history = useHistory();
   const dispatch = useDispatch();
+  const history = useHistory();
   const location = useLocation<TLocation>();
   const background = location.state && location.state.background;
-  type QuizParams = {
-    id: string;
-  };
-  const { id } = useParams<QuizParams>();
-  const { ingredientsList } = useSelector((state) => state.ingredientsList);
-  const ingredient = ingredientsList.find((i: { _id: string }) => i._id === id);
-  console.log(ingredient);
 
   useEffect(() => {
     dispatch(getIngredientsList());
   }, [dispatch]);
 
-  //const openIngredientDetailsModal = useSelector(state => !!state.ingredientDetails.ingredientDetails);
+  const closeIngredientsModal = useCallback(() => {
+    history.push("/");
+  }, []);
 
-  const closeIngredientsModal = () => {
-    dispatch(deleteIgredientDetails());
-    history.push({
-      ...location.state.background,
-      state: { background: null },
-    });
-  };
+  const closeModal = useCallback(() => {
+    history.goBack();
+  }, []);
 
   return (
     <DndProvider backend={HTML5Backend}>
       <AppHeader />
       <Switch location={background || location}>
         <Route path="/" exact={true} component={Main} />
-        <Route path="/login" component={LoginPage} />
-        <Route path="/register" component={Registration} />
-        <Route path="/forgot-password" component={ForgotPassword} />
-        <Route path="/reset-password" component={ResetPassword} />
-        <ProtectedRoute path="/profile" component={ProfilePage} />
-        <ProtectedRoute path="/profile/orders" component={ProfilePage} />
-
-        <Route path="/ingredients/:id">
-          <IngredientInfo />
-        </Route>
+        <Route path="/login" exact={true} component={LoginPage} />
+        <Route path="/register" exact={true} component={Registration} />
+        <Route
+          path="/forgot-password"
+          exact={true}
+          component={ForgotPassword}
+        />
+        <Route path="/reset-password" exact={true} component={ResetPassword} />
+        <ProtectedRoute path="/profile" exact={true} component={ProfilePage} />
+        <ProtectedRoute
+          path="/profile/orders"
+          exact={true}
+          component={ProfilePage}
+        />
+        <ProtectedRoute
+          path="/profile/orders/:id"
+          exact={true}
+          component={OrderId}
+        />
+        <Route path="/feed" exact={true} component={FeedPage} />
+        <Route path="/feed/:id" exact={true} component={FeedId} />
+        <Route
+          path="/ingredients/:id"
+          exact={true}
+          component={IngredientPage}
+        />
 
         <Route component={PageNotFound} />
       </Switch>
+
       {background && (
-        <Route path="/ingredients/:id">
-          <Modal onClose={closeIngredientsModal}>
-            <IngredientDetails />
-          </Modal>
-        </Route>
+        <>
+          <Route path="/ingredients/:id">
+            <Modal onClose={closeIngredientsModal} title="Детали ингредиента">
+              <IngredientDetails />
+            </Modal>
+          </Route>
+
+          <Route path="/feed/:id">
+            <Modal onClose={closeModal}>
+              <OrderInfo />
+            </Modal>
+          </Route>
+
+          <Route path="/profile/orders/:id">
+            <Modal onClose={closeModal}>
+              <OrderInfoUser />
+            </Modal>
+          </Route>
+        </>
       )}
     </DndProvider>
   );

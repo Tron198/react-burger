@@ -1,11 +1,19 @@
-import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
+import styles from "./orders-history.module.css";
+import { OrderCard } from "../order-card/order-card";
+import { useSelector } from "../../services/hooks/hooks";
 
 export const OrdersHistory = () => {
+  const orders = useSelector((state) => state.webSocket.orders);
+
   return (
-    <ConstructorElement
-      text="ЗДЕСЬ ПОКА НИЧЕГО НЕТ :("
-      price={0}
-      thumbnail={"CurrencyIcon"}
-    />
+    <>
+      <ul className={styles.scroll}>
+        {orders.map((order) => (
+          <li className={styles.block} key={order._id}>
+            <OrderCard order={order} />
+          </li>
+        ))}
+      </ul>
+    </>
   );
 };

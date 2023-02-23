@@ -4,8 +4,11 @@ import { LoginPage } from "./login";
 import { ForgotPassword } from "./forgot-password";
 import { ResetPassword } from "./reset-password";
 import { ProfilePage } from "./profile";
+import { IngredientPage } from "./ingredients";
 import { PageNotFound } from "./not-found";
-import { IngredientInfo } from "./ingredients-info";
+import { FeedPage } from "./feed";
+import { FeedId } from "./feed-id";
+import { OrderId } from "./order-id";
 
 export {
   Main,
@@ -14,6 +17,9 @@ export {
   ForgotPassword,
   ResetPassword,
   ProfilePage,
+  IngredientPage,
   PageNotFound,
-  IngredientInfo,
+  FeedPage,
+  FeedId,
+  OrderId,
 };

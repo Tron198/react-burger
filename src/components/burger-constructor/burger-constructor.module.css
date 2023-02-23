@@ -1,9 +1,10 @@
 .total {
   width: 600px;
+  min-height: 272px;
   margin-top: 84px;
 }
 
-.ingredientsList {
+.list {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -11,27 +12,28 @@
   padding: 0;
 }
 
-.listElement {
+.element {
   display: flex;
   width: 584px;
   align-items: center;
   column-gap: 9px;
   justify-content: flex-end;
 }
-.constructorScroll {
+
+.scroll {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  height: 58vh;
+  max-height: 36vh;
   overflow-y: auto;
   overflow-x: hidden;
 }
 
-.constructorScroll::-webkit-scrollbar {
+.scroll::-webkit-scrollbar {
   width: 8px;
   background-color: #2f2f37;
 }
 
-.constructorScroll::-webkit-scrollbar-thumb {
+.scroll::-webkit-scrollbar-thumb {
   background-color: #8585ad;
 }

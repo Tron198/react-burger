@@ -6,7 +6,7 @@
   justify-content: center;
 }
 
-.headerNavigation {
+.navigation {
   max-width: 1240px;
   white-space: nowrap;
   display: grid;
@@ -24,7 +24,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  justify-content: flex-end;
+  justify-content: end;
   text-decoration: none;
 }
 

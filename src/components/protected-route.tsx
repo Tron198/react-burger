@@ -1,15 +1,17 @@
-import { Route, Redirect } from "react-router-dom";
+import { Route, Redirect, RouteProps } from "react-router-dom";
 import { useSelector } from "../services/hooks/hooks";
+import { useLocation } from "react-router-dom";
+import { TLocation } from "../services/types/types";
 
-export const ProtectedRoute = (props: any) => {
+export const ProtectedRoute = ({ component, path }: RouteProps) => {
   const authorization = useSelector((state) => state.getLogin.login);
-
+  const location = useLocation<TLocation>();
   if (!authorization) {
     return (
-      <Route path={props.path} exact={props.exact}>
-        <Redirect to={"/login?retpath=/profile"} />
+      <Route path={path} component={component}>
+        <Redirect to={{ pathname: "/login", state: { from: location } }} />
       </Route>
     );
   }
-  return <Route {...props} />;
+  return <Route path={path} component={component} />;
 };

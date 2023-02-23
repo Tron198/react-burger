@@ -1,10 +1,14 @@
 import styles from "./order-details.module.css";
 import { useSelector } from "../../services/hooks/hooks";
 import done from "../../images/done.png";
+import Loader from "../loder/loader";
 
 export const OrderDetails = () => {
   const orderId = useSelector((state) => state.orderDetails.id);
 
+  if (!orderId) {
+    return <Loader />;
+  }
   return (
     <div className={styles.order}>
       <h3 className={`${styles.orderTitle} text text_type_digits-large mt-20`}>

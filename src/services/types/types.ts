@@ -5,7 +5,6 @@ import { store } from "../store";
 import { TUnionAction } from "../actions/interfaces";
 
 export type RootState = ReturnType<typeof store.getState>;
-
 export type AppThunk<ReturnType = void> = ActionCreator<
   ThunkAction<ReturnType, RootState, never, TUnionAction>
 >;
@@ -78,6 +77,7 @@ export type TModalOverlay = {
 export type TPriceCount = {
   onClick: () => void;
 };
+
 export type TLocation = {
   background: TLocation;
   hash: string;
@@ -93,4 +93,25 @@ export type TLocation = {
       key: string;
     };
   };
+};
+
+export type TOrder = {
+  ingredients: Array<string>;
+  _id: string;
+  status: string;
+  number: number;
+  createdAt: string;
+  updatedAt: string;
+  name: string;
+};
+
+export type TOrderProps = {
+  order: TOrder;
+};
+
+export type TOrders = {
+  success: boolean;
+  orders: Array<TOrder>;
+  total: number;
+  totalToday: number;
 };
