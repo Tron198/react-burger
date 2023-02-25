@@ -29,6 +29,7 @@ export const OrderCard: FC<TOrderProps> = ({ order }) => {
     (acc, ingredient) => acc + ingredient.price,
     0
   );
+  const count = orderIngredientsForImage.length - 6;
 
   const openOrderDetails = () => {
     if (location.pathname === "/feed") {
@@ -57,6 +58,7 @@ export const OrderCard: FC<TOrderProps> = ({ order }) => {
     }
     return false;
   };
+
   const date = conversionDate(order.createdAt);
 
   return (
@@ -81,14 +83,23 @@ export const OrderCard: FC<TOrderProps> = ({ order }) => {
       <p className={`${styles.text} text text_type_main-medium mt-6`}></p>
       <div className={styles.ingredients}>
         <ul className={styles.list}>
-          {orderIngredientsForImage.map((image) => (
-            <li className={styles.ingredientFrame} key={image._id}>
+          {orderIngredientsForImage.slice(0, 6).map((image, index) => (
+            <li
+              className={styles.ingredientFrame}
+              key={image._id}
+              style={{ zIndex: 5 - index }}
+            >
               <img
                 className={styles.ingredientImage}
                 src={image.image_mobile}
               />
             </li>
           ))}
+          {orderIngredientsForImage.length > 6 ? (
+            <div className={styles.overlay}>
+              <span className="text text_type_main-default">{`+${count}`}</span>
+            </div>
+          ) : null}
         </ul>
         <div className={styles.price}>
           <p className="text text_type_digits-default mr-2">

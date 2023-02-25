@@ -6,10 +6,12 @@ import {
   ListIcon,
   ProfileIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useRouteMatch } from "react-router-dom";
 
 const AppHeaderFunction = () => {
   const { pathname } = useLocation();
+
+  const isProfile = !!useRouteMatch("/profile");
 
   return (
     <header className={styles.header}>
@@ -42,15 +44,15 @@ const AppHeaderFunction = () => {
           </NavLink>
         </div>
 
-        <Logo />
+        <NavLink to="/" exact={true}>
+          <Logo />
+        </NavLink>
 
         <NavLink to="/profile" exact={true} className={styles.link}>
-          <ProfileIcon
-            type={pathname === "/profile" ? "primary" : "secondary"}
-          />
+          <ProfileIcon type={isProfile ? "primary" : "secondary"} />
           <p
             className={
-              pathname === "/profile"
+              isProfile
                 ? `${styles.active} text text_type_main-default`
                 : `text text_type_main-default text_color_inactive`
             }

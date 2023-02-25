@@ -4,17 +4,17 @@ import {
 } from "../constants/constants";
 import { TIngredientType } from "../types/types";
 import {
-  ISetIgredientDetails,
-  IDeleteIgredientDetails,
+  ISetIngredientDetails,
+  IDeleteIngredientDetails,
 } from "../actions/interfaces";
 
-export const setIgredientDetails = (
+export const setIngredientDetails = (
   payload: TIngredientType
-): ISetIgredientDetails => ({
+): ISetIngredientDetails => ({
   type: SET_INGREDIENT_DETAILS,
   payload,
 });
 
-export const deleteIgredientDetails = (): IDeleteIgredientDetails => ({
+export const deleteIngredientDetails = (): IDeleteIngredientDetails => ({
   type: DELETE_INGREDIENT_DETAILS,
 });

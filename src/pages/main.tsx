@@ -5,7 +5,10 @@ import { BurgerIngredients } from "../components/burger-ingredients/burger-ingre
 import { BurgerConstructor } from "../components/burger-constructor/burger-constructor";
 import { PriceCount } from "../components/price-count/price-count";
 import { useHistory } from "react-router-dom";
-import { getOrderNumber } from "../services/actions/order-details";
+import {
+  getOrderNumber,
+  deleteOrderSuccess,
+} from "../services/actions/order-details";
 import { useDispatch } from "../services/hooks/hooks";
 import { Modal } from "../components/modal/modal";
 import { OrderDetails } from "../components/order-details/order-details";
@@ -16,11 +19,11 @@ export const Main = () => {
   const history = useHistory();
   const authorization = useSelector((state) => state.getLogin.login);
 
-  const ingredients = useSelector(
-    (state) => state.ingredientsList.ingredientsList
-  );
+  const main = useSelector((state) => state.constructorList.constructorList);
   const buns = useSelector((state) => state.constructorList.buns);
-  const idList = ingredients.map((element) => element._id);
+  const mainList = main.map((element) => element._id);
+  const bunsList = buns.map((element) => element._id);
+  const idList = mainList.concat(bunsList).concat(bunsList);
 
   const [openOrderModal, setOrderOpenModal] = useState(false);
 
@@ -35,6 +38,7 @@ export const Main = () => {
 
   const closeOrderModal = useCallback(() => {
     setOrderOpenModal(false);
+    dispatch(deleteOrderSuccess());
     dispatch(clearConstructor());
   }, []);
 

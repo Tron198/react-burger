@@ -1,7 +1,7 @@
 .modal {
   display: flex;
+  position: absolute;
   flex-direction: column;
-  position: fixed;
   width: 720px;
   min-height: 539px;
   max-height: 718px;
@@ -10,12 +10,13 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 6;
 }
 
 .closeButton {
   position: absolute;
-  top: 27px;
-  right: 27px;
+  top: 57px;
+  right: 37px;
   cursor: pointer;
   background-color: transparent;
   border: none;

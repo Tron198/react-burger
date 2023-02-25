@@ -1,15 +1,14 @@
 import { ReactNode } from "react";
 import { ThunkAction } from "redux-thunk";
-import { ActionCreator, Dispatch } from "redux";
+import { ActionCreator } from "redux";
 import { store } from "../store";
 import { TUnionAction } from "../actions/interfaces";
 
 export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 export type AppThunk<ReturnType = void> = ActionCreator<
   ThunkAction<ReturnType, RootState, never, TUnionAction>
 >;
-
-export type AppDispatch = Dispatch<TUnionAction>;
 
 export type TIngredientType = {
   _id: string;
@@ -112,6 +111,6 @@ export type TOrderProps = {
 export type TOrders = {
   success: boolean;
   orders: Array<TOrder>;
-  total: number;
-  totalToday: number;
+  total?: number;
+  totalToday?: number;
 };

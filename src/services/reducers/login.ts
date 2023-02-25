@@ -6,7 +6,7 @@ type TInitialState = {
   login: boolean;
 };
 
-const initialState: TInitialState = {
+export const initialState: TInitialState = {
   login: getCookie("access") ? true : false,
 };
 
