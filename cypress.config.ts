@@ -9,10 +9,10 @@ export default defineConfig({
   },
 
   e2e: {
-    setupNodeEvents(on, config) {
-    
+    setupNodeEvents(_on, _config) {
+      // implement node event listeners here
     },
     specPattern: "cypress/integration/*.spec.{js,ts,jsx,tsx}",
-    baseUrl: "http://localhost:3000/",
+    baseUrl: 'http://localhost:3000/react-burger'
   },
 });
