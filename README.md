@@ -19,5 +19,5 @@ BEM,
 Grid Layout.
 
 * Ссылка на сайт:
-https://tron198.github.io/react-burger/index.html 
+https://tron198.github.io/react-burger
 
