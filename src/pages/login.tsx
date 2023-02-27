@@ -6,9 +6,10 @@ import {
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Link, Redirect } from "react-router-dom";
-import { useDispatch, useSelector } from "../services/hooks/hooks";
+import { useDispatch, useSelector} from "../services/hooks/hooks";
 import { getUserLogin } from "../services/actions/login";
 import { useForm } from "../services/hooks/useForm";
+import { useLocation } from "react-router-dom";
 
 export const LoginPage = () => {
   const dispatch = useDispatch();
@@ -21,9 +22,10 @@ export const LoginPage = () => {
     dispatch(getUserLogin(values.email, values.password));
   };
 
+  const location = useLocation()
+  
   if (authorization) {
-    const searchParams = new URLSearchParams(window.location.search);
-    return <Redirect to={searchParams.get("retpath") || "/"} />;
+    return <Redirect to={{state: {from: location}}|| '/'} />;
   }
 
   return (
