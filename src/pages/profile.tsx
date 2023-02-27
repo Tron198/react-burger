@@ -29,11 +29,7 @@ export const ProfilePage = () => {
     <section className={styles.profile}>
       <Menu />
       <Route path="/profile" exact={true} component={ProfileForm} />
-      <Route
-        path="/profile/orders"
-        exact={true}
-        component={OrdersHistoryUser}
-      />
+      <Route path="/profile/orders" component={OrdersHistoryUser} />
     </section>
   );
 };

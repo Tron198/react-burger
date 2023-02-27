@@ -13,7 +13,7 @@ type TInitialState = {
   buns: Array<TIngredientType>;
 };
 
-const initialState: TInitialState = {
+export const initialState: TInitialState = {
   constructorList: [],
   buns: [],
 };

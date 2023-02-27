@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEventHandler } from "react";
+import React, { FormEventHandler } from "react";
 import styles from "./pages.module.css";
 import {
   Input,

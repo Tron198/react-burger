@@ -22,7 +22,6 @@ import {
   IWsConnectionErrorUser,
   IWsConnectionClosedUser,
   IWsGetOrdersUser,
-  IWsActions,
 } from "./interfaces";
 
 export const wsConnectionStart = (): IWsConnectionStart => ({
@@ -75,10 +74,26 @@ export const wsActions: IWsActions = {
   onOrders: WS_GET_ORDERS,
 };
 
-export const wsActionsUser: IWsActions = {
+export interface IWsActions {
+  readonly wsInit: typeof WS_CONNECTION_START;
+  readonly onOpen: typeof WS_CONNECTION_SUCCESS;
+  readonly onClose: typeof WS_CONNECTION_CLOSED;
+  readonly onError: typeof WS_CONNECTION_ERROR;
+  readonly onOrders: typeof WS_GET_ORDERS;
+}
+
+export const wsActionsUser: IWsActionsUser = {
   wsInit: WS_CONNECTION_START_USER,
   onOpen: WS_CONNECTION_SUCCESS_USER,
   onClose: WS_CONNECTION_CLOSED_USER,
   onError: WS_CONNECTION_ERROR_USER,
   onOrders: WS_GET_ORDERS_USER,
 };
+
+export interface IWsActionsUser {
+  readonly wsInit: typeof WS_CONNECTION_START_USER;
+  readonly onOpen: typeof WS_CONNECTION_SUCCESS_USER;
+  readonly onClose: typeof WS_CONNECTION_CLOSED_USER;
+  readonly onError: typeof WS_CONNECTION_ERROR_USER;
+  readonly onOrders: typeof WS_GET_ORDERS_USER;
+}

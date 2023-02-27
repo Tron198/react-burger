@@ -1,4 +1,9 @@
-.profileMenu {
+.menu {
+  width: 320px;
+  margin-top: 120px;
+}
+
+.link {
   display: flex;
   align-items: center;
   height: 64px;
