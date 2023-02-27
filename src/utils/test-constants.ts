@@ -166,4 +166,4 @@ export const ingredientClass = '[class^=ingredient-card_cardButton]';
 export const closeButtonClass = '[class^=modal_closeButton]';
 export const tabClass = '[class^=tab]';
 export const burgerConstructorClass = '[class^=burger-constructor_total]';
-export const burgerConstructorIngredientClass = '[class^=burger-element_element]';
+export const burgerConstructorIngredientClass = '[class^=constructor-element]';
